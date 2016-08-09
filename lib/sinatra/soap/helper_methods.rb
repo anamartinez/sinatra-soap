@@ -31,11 +31,10 @@ module Sinatra
       end
 
       def wsdl_occurence(param, inject, extend_with = {})
-        param=Param.new(param[0], param[1])
+        param = Param.new(param[0], param[1], true)
         extend_with = { :name => param.name, :type => param.namespaced_type }
         data = !param.multiplied ? {} : {
-          "#{'xsi:' if inject}minOccurs" => 0,
-          "#{'xsi:' if inject}maxOccurs" => 'unbounded'
+          "#{'xsi:' if inject}minOccurs" => 1
         }
         extend_with.merge(data)
       end
@@ -50,7 +49,7 @@ module Sinatra
                 param.map.each do |value|
                   param_value = Param.new(value[0], value[1])
                   more << value if param_value.struct?
-                  xml.tag! "xsd:element", wsdl_occurence(value, false)
+                  xml.tag! "xsd:element", wsdl_occurence(value, true)
                 end
               end
             end
