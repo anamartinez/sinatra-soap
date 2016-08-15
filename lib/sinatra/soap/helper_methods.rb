@@ -34,9 +34,14 @@ module Sinatra
         param = Param.new(param[0], param[1], true)
         extend_with = { :name => param.name, :type => param.namespaced_type }
         data = !param.multiplied ? {} : {
-          "#{'xsi:' if inject}minOccurs" => 1
+          "minOccurs" => 1
         }
         extend_with.merge(data)
+      end
+
+      def wsdl_message(param)
+        param = Param.new(param[0], param[1], true)
+        { :name => param.name, :element => "tns:#{param.namespaced_type}" }
       end
 
       def wsdl_type(xml, param, defined=[])

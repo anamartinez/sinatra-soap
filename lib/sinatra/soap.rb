@@ -21,13 +21,15 @@ module Sinatra
       app.set :namespace, 'http://schemas.xmlsoap.org/wsdl/' unless defined?(app.settings.namespace)
       app.set :endpoint, '/action' unless defined?(app.settings.endpoint)
       app.set :service, 'Sinatra' unless defined?(app.settings.service)
+      app.set :version, '1.0' unless defined?(app.settings.version)
+      app.set :name, '' unless defined?(app.settings.name)
 
       app.post(app.settings.endpoint) do
         content_type 'text/xml'
         call_action_block
       end
 
-      app.get(app.settings.wsdl_route) do 
+      app.get(app.settings.wsdl_route) do
         content_type 'text/xml'
         get_wsdl
       end
