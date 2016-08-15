@@ -41,7 +41,7 @@ module Sinatra
 
       def wsdl_message(param)
         param = Param.new(param[0], param[1], true)
-        { :name => param.name, :element => "tns:#{param.namespaced_type}" }
+        { :name => param.name, :element => param.namespaced_type }
       end
 
       def wsdl_type(xml, param, defined=[])
