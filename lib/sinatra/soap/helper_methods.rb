@@ -26,7 +26,10 @@ module Sinatra
             raise "No wsdl file"
           end
         else
-          builder :wsdl, locals: {wsdl: Soap::Wsdl.actions}, :views => self.soap_views
+          wsdl_name = self.class::WSDL_NAME
+          actions = {wsdl_name => Soap::Wsdl.actions[wsdl_name]}
+
+          builder :wsdl, locals: {wsdl: actions}, :views => self.soap_views
         end
       end
 

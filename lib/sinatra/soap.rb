@@ -19,7 +19,7 @@ module Sinatra
 
       app.set :wsdl_route, '/wsdl' unless defined?(app.settings.wsdl_path)
       app.set :namespace, 'http://schemas.xmlsoap.org/wsdl/' unless defined?(app.settings.namespace)
-      app.set :endpoint, '/action' unless defined?(app.settings.endpoint)
+      app.set :endpoint, '' unless defined?(app.settings.endpoint)
       app.set :service, 'Sinatra' unless defined?(app.settings.service)
       app.set :version, '1.0' unless defined?(app.settings.version)
       app.set :name, '' unless defined?(app.settings.name)

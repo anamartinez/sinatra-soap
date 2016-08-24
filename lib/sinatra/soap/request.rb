@@ -28,7 +28,7 @@ module Sinatra
       end
 
 
-      def params 
+      def params
         return orig_params[:soap] unless orig_params[:soap].nil?
         rack_input = env["rack.input"].read
         env["rack.input"].rewind
@@ -52,7 +52,7 @@ module Sinatra
           :strip_namespaces => true,
           :advanced_typecasting => true,
           :convert_tags_to => (
-            snakecase ? lambda { |tag| tag.snakecase.to_sym } 
+            snakecase ? lambda { |tag| tag.snakecase.to_sym }
                       : lambda { |tag| tag.to_sym }
           )
         )

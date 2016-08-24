@@ -67,7 +67,7 @@ xml.definitions 'name' => settings.service,
 
   xml.service :name => settings.service do
     xml.port :name => "#{settings.name}Port", :binding => "tns:#{settings.name}Binding" do
-      xml.tag! "soap:address", :location => "http://#{request.host_with_port}#{settings.endpoint}"
+      xml.tag! "soap:address", :location => "http://#{request.host_with_port}/#{settings.name}"
     end
   end
 end
